@@ -1,7 +1,7 @@
 #include "func.h"
 
 
-
+// Головне меню програми
 void menu() {
     char c;
     int i;
@@ -57,6 +57,7 @@ void clearFile(string filename) {
     file.close();
 }
 
+// Перевірка чи є вільний час для запису
 bool isTimeAvailable(string filename, Time time) {
     Client client;
     ifstream file(filename, ios::binary);
@@ -81,6 +82,7 @@ bool isTimeAvailable(string filename, Time time) {
     return true;
 }
 
+// Вввід даних про користувача
 void inputFile(string filename) {
     Client client;
     Time time = { 0, 0 };
@@ -140,6 +142,7 @@ void inputFile(string filename) {
     cout << "Client successfully added!" << endl;
 }
 
+// Виведення списку клієнтів у поточному файлі
 void readFile(string filename) {
     Client client;
     ifstream file;
@@ -160,6 +163,7 @@ void readFile(string filename) {
     file.close();
 }
 
+// Виведення списку клієнті записаних після 16:30 у новий файл
 void outputFile(string filename, string newFilename) {
     Client client;
     Time time;
