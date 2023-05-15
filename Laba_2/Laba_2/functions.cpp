@@ -27,7 +27,7 @@ void menu() {
         case 2:
             do {
                 inputFile(filename);
-                cout << "The client successfuly added!\n\nDo you want to add another (y/n)?\n";
+                cout << "\nDo you want to add another (y/n)?\n";
                 cout << ">> ";
                 cin >> c;
                 if (c == 'n' || c == 'N') break;
@@ -128,7 +128,7 @@ void inputFile(string filename) {
         cin >> client.duration;
 
         if (client.duration < 10 || client.duration > 60) {
-            cout << "The procedure can take 10 - 90 minutes!" << endl;
+            cout << "The procedure can take 10 - 60 minutes!" << endl;
             f = false;
         }
         else {
