@@ -1,0 +1,8 @@
+﻿  func.cpp
+C:\Users\rgrit\Desktop\KPI\OP\C++ Labs\Laba_3\func.h(32,50): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\rgrit\Desktop\KPI\OP\C++ Labs\Laba_3\func.cpp(24,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\rgrit\Desktop\KPI\OP\C++ Labs\Laba_3\func.cpp(42,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+C:\Users\rgrit\Desktop\KPI\OP\C++ Labs\Laba_3\func.h(32,50): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Laba_3.vcxproj -> C:\Users\rgrit\Desktop\KPI\OP\C++ Labs\Laba_3\x64\Debug\Laba_3.exe
