@@ -20,7 +20,8 @@ struct Client {
 };
 
 void menu();
-bool isTimeAvailable(string filename, Time time);
+string inputName(string& filename, string& newfilename);
+bool isTimeAvailable(string filename, Time time, int duration);
 void clearFile(string filename);
 void inputFile(string filename);
 void readFile(string filename);
