@@ -5,46 +5,52 @@
 void menu() {
     char c;
     int i;
-    string filename = "bin.txt", newfilename = "newbin.txt";
+    string file, newfile;
 
-    cout << "What do you want to do?\n";
+    inputName(file, newfile);
+
+    cout << "\n\nWhat do you want to do?\n";
     
     do {
-        cout << "\n1) Create a new file\n"
-            << "2) Add a new client to list\n"
-            << "3) Watch file input (list of clients)\n"
-            << "4) Watch list of clients that booked after 16:30\n"
-            << "5) Exit\n";
+        cout << "\n1) Choose other files\n"
+            << "2) Clear files / type new data\n"
+            << "3) Add a new client to list\n"
+            << "4) Watch file input (list of clients)\n"
+            << "5) Watch list of clients that booked after 16:30\n"
+            << "6) Exit\n";
         cout << ">> ";
         cin >> i;
 
         switch (i) {
         case 1:
-            clearFile(filename);
-            cout << "\nFile successfuly cleared!\nEnter information about client:\n";
-            inputFile(filename);
+            inputName(file, newfile);
             break;
         case 2:
+            clearFile(file);
+            cout << "\n\nFile successfuly cleared!\nEnter information about client:\n";
+            inputFile(file);
+            break;
+        case 3:
             do {
-                inputFile(filename);
+                inputFile(file);
                 cout << "\nDo you want to add another (y/n)?\n";
                 cout << ">> ";
                 cin >> c;
                 if (c == 'n' || c == 'N') break;
             } while (c == 'y' || c == 'Y');
             break;
-        case 3:
-            readFile(filename);
-            break;
         case 4:
-            outputFile(filename, newfilename);
+            readFile(file);
             break;
         case 5:
+            outputFile(file, newfile);
+            break;
+        case 6:
             cout << "\nExitting program\n";
             return;
             break;
         }
-    } while (i != 5);
+    } while (i != 6);
 }
 
 void clearFile(string filename) {
@@ -57,28 +63,44 @@ void clearFile(string filename) {
     file.close();
 }
 
+string inputName(string& filename, string& newfilename) {
+    cout << "\nEnter files name which you want to create | open";
+    cout << "\n=========================================================\n";
+    cin.ignore();
+    cout << "Enter input  file: ";
+    getline(cin, filename);
+    filename += ".bin";
+    cout << "Enter output file: ";
+    getline(cin, newfilename);
+    newfilename += ".bin";
+    return filename, newfilename;
+}
+
 // Перевірка чи є вільний час для запису
-bool isTimeAvailable(string filename, Time time) {
+bool isTimeAvailable(string filename, Time time, int duration) {
     Client client;
     ifstream file(filename, ios::binary);
     if (!file) {
-        cerr << "Cannot open the file!\n" << endl;
+        cerr << "\n\nCannot open the file!\n" << endl;
         return false;
     }
 
+    int targetMinutes = time.hour * 60 + time.min;
+    int targetEndMinutes = targetMinutes + duration;
+
     while (file.read((char*)&client, sizeof(Client))) {
-        if (client.time.hour == time.hour) {
-            if (time.min >= client.time.min && time.min < client.time.min + client.duration) {
-                return false;
-            }
-            else if (time.min + 10 > client.time.min && time.min < client.time.min) {
-                return false;
-            }
+        int appointmentMinutes = client.time.hour * 60 + client.time.min;
+        int appointmentEndMinutes = appointmentMinutes + client.duration;
+
+        if (targetMinutes >= appointmentMinutes && targetMinutes < appointmentEndMinutes) {
+            return false;
         }
-        else if (time.hour > client.time.hour && time.hour < client.time.hour + (client.duration / 60)) {
+
+        if (targetEndMinutes > appointmentMinutes && targetEndMinutes <= appointmentEndMinutes) {
             return false;
         }
     }
+
     return true;
 }
 
@@ -89,11 +111,13 @@ void inputFile(string filename) {
     ofstream file;
     file.open(filename, ios::binary | ios::app);
     if (!file) {
-        cerr << "Cannot open the file!\n" << endl;
+        cerr << "\n\nCannot open the file!\n" << endl;
         return;
     }
 
-    bool f = true;
+    bool validTime = false;
+    bool validDuration = false;
+
     cout << "\nName: ";
     cin >> client.name;
 
@@ -106,22 +130,22 @@ void inputFile(string filename) {
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             cout << "Invalid input. Please enter valid hour and minute in the format HH MM\n";
-            f = false;
+            validTime = false;
         }
-        else if (time.hour < 8 && time.min < 30 || time.hour == 22 && time.min > 0 || time.min < 0 || time.min > 59) {
-            std::cout << "The hairdresser works from 8:00 to 22:00" << endl;
-            std::cout << "Enter again" << endl;
-            f = false;
+        else if (time.hour < 8 || time.hour >= 22 || time.min < 0 || time.min > 59) {
+            cout << "The hairdresser works from 8:00 to 22:00" << endl;
+            cout << "Enter again" << endl;
+            validTime = false;
         }
-        else if (!isTimeAvailable(filename, time)) {
-            std::cout << "The time is already taken by another client!" << endl;
-            std::cout << "Enter again" << endl;
-            f = false;
+        else if (!isTimeAvailable(filename, time, client.duration)) {
+            cout << "The time is already taken by another client!" << endl;
+            cout << "Enter again" << endl;
+            validTime = false;
         }
         else {
-            f = true;
+            validTime = true;
         }
-    } while (!f);
+    } while (!validTime);
 
     do {
         cout << "Duration of procedure: ";
@@ -129,12 +153,12 @@ void inputFile(string filename) {
 
         if (client.duration < 10 || client.duration > 60) {
             cout << "The procedure can take 10 - 60 minutes!" << endl;
-            f = false;
+            validDuration = false;
         }
         else {
-            f = true;
+            validDuration = true;
         }
-    } while (!f);
+    } while (!validDuration);
 
     client.time = time;
     file.write((char*)&client, sizeof(Client));
