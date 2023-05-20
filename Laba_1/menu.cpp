@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "menu.h"
 
+// Головне меню
 void menu() {
     cout << "\n\n1) Choose other files\n"
         << "2) Clear file and add new data\n"
@@ -11,6 +12,7 @@ void menu() {
     cout << ">> ";
 }
 
+// Функції для введення назви файлів
 string takeName(string& filename, string& newfilename) {
     cin.ignore();
     cout << "\nEnter files name which you want to read|open";
