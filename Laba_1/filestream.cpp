@@ -2,6 +2,7 @@
 #include "menu.h"
 
 
+// Меню
 void stream() {
     char c;
     int i;
@@ -54,7 +55,7 @@ void stream() {
     } while (i != 6);
 }
 
-
+// Очищення файлу
 void clearFile(string filename) {
     ofstream file;
     file.open(filename, ofstream::trunc);
@@ -65,7 +66,7 @@ void clearFile(string filename) {
     file.close();
 }
 
-
+// Введення тексту у файл
 void inputFile(string filename) {
     ofstream file;
     file.open(filename, ofstream::app);
@@ -110,7 +111,7 @@ string readFile(string& filename) {
     }
 }
 
-
+// Запис у новий файл результатів (найбільше число, числа через кому, слова)
 void processFile(string inputFile, string outputFile) {
     ifstream inFile(inputFile);
     ofstream outFile(outputFile);
@@ -169,6 +170,7 @@ void processFile(string inputFile, string outputFile) {
     outFile.close();
 }
 
+// Знаходження найбільшого числа у рядку
 int numMax(const string& line) {
     int maxNum = -1;
     string numTake;
