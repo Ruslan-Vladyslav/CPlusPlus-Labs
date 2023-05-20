@@ -3,6 +3,7 @@
 #include "filepointer.h"
 #include "menu.h"
 
+// Меню
 void pointer() {
     char* cur_file = (char*)malloc(256 * sizeof(char));
     char* new_file = (char*)malloc(256 * sizeof(char));
@@ -61,6 +62,7 @@ void pointer() {
     free(new_file);
 }
 
+// Для читтання файлу
 char* read_File(char* filename) {
     FILE* file = fopen(filename, "r");
     if (file == nullptr) {
@@ -79,6 +81,7 @@ char* read_File(char* filename) {
     return array;
 }
 
+
 void add_input(char* filename, char* text) {
     FILE* file = fopen(filename, "a+");
     if (file == nullptr) {
@@ -89,6 +92,7 @@ void add_input(char* filename, char* text) {
     fclose(file);
 }
 
+// Введення тексту у файл
 char* input_File() {
     char c;
     bool check = false;
@@ -123,7 +127,8 @@ char* input_File() {
 
 }
 
-void write_File(char* filename, char* text) { //запис нового тексту у файл
+// Функція для запису рядків у файл
+void write_File(char* filename, char* text) { 
     FILE* file = fopen(filename, "w");
     if (file == nullptr) {
         cerr << "\n\nCannot open the file!" << endl;
