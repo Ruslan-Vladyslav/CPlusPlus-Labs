@@ -75,7 +75,7 @@ void interface() {
 	cout << "\n-------------------------------------------\n\n";
 }
 
-
+// Перевірка чи є число шістнадцятковим
 bool checkHexa(string str) {
     string validChars = "0123456789ABCDEF";
     for (char c : str) {
