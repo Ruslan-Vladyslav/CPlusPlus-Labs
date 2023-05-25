@@ -1,13 +1,13 @@
 ﻿#include "header.h"
 
 
-
+// Переведення числа у десяткове
 int Numeral_16::turnDecimal() {
 	int decimal = stoi(hexadecimal, nullptr, 16);
 	return decimal;
 };
 
-
+// Переведення у шістнадцяткове число
 string Numeral_16::turnHexa(long n) {
 	string hexa;
 	while (n != 0) {
@@ -22,7 +22,7 @@ string Numeral_16::turnHexa(long n) {
 	return hexa;
 }
 
-
+// Інкрементування числа
 Numeral_16 Numeral_16::inc() {
 	int decimal = turnDecimal();
 	decimal++;
@@ -43,7 +43,7 @@ Numeral_16 Numeral_16::operator++() {
 	return inc();
 };
 
-
+// Постфіксний оператор
 Numeral_16 Numeral_16::operator++(int) {
 	Numeral_16 temp = *this;
 	inc();
