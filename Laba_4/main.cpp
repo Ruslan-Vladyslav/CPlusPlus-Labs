@@ -16,7 +16,6 @@ int main() {
 	cout << "\n>> ";
 	cin >> option;
 
-
 	if (option == 1) {
 		cout << "\n\nEnter hexadecimal number N1: ";
 		cin >> num1;
