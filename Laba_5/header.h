@@ -37,7 +37,7 @@ class TvectorR2 : public Tvector {
 public:
     TvectorR2(double xcor, double ycor) : Tvector(xcor, ycor, 0) {}
 
-    double length() override {
+    double length() {
         return sqrt((x * x) + (y * y));
     }
 };
@@ -47,7 +47,7 @@ class TvectorR3 : public Tvector {
 public:
     TvectorR3(double xcor, double ycor, double zcor) : Tvector(xcor, ycor, zcor) {}
 
-    double length() override {
+    double length() {
         return sqrt((x * x) + (y * y) + (z * z));
     }
 };
