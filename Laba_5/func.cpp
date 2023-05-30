@@ -17,7 +17,7 @@ TvectorR3 inputR3() {
 	return TvectorR3(x, y, z);
 };
 
-
+// Для знаходження суми довжин векторів (паралельних до першого по порядку двовимірного вектора та перпендикулярних до першого порядку тривимірного вектора)
 void result(Tvector& v1, Tvector& v2, Tvector& v3, Tvector& v4, Tvector& v5, Tvector& v6, Tvector& v7) {
     double sumD2 = 0.0;
     double sumD3 = 0.0;
