@@ -14,6 +14,7 @@ public:
         return sqrt((x * x) + (y * y) + (z * z));
     }
 
+    // Перевірка на паралельність
     virtual bool parallel(Tvector& other) {
         double eps = 1e-6; // Мале значення для порівняння з нулем
         double dot_product = x * other.x + y * other.y + z * other.z;
@@ -22,6 +23,7 @@ public:
         return fabs(dot_product - mag_product) < eps;
     }
 
+    // Перевірка на перпендикулярність
     virtual bool perpendicular(Tvector& other) {
         double eps = 1e-6; 
         double dot_product = x * other.x + y * other.y + z * other.z;
