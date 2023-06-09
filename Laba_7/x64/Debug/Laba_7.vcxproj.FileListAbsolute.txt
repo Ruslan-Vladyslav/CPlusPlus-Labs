@@ -1,0 +1,5 @@
+C:\Users\rgrit\Desktop\KPI\OP\C++ Labs\Laba_7\x64\Debug\Laba_7.vcxproj.AssemblyReference.cache
+C:\Users\rgrit\Desktop\KPI\OP\C++ Labs\Laba_7\x64\Debug\Laba_7.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\rgrit\Desktop\KPI\OP\C++ Labs\Laba_7\x64\Debug\Laba7.MainForm.resources
+C:\Users\rgrit\Desktop\KPI\OP\C++ Labs\Laba_7\x64\Debug\Laba_7.vcxproj.GenerateResource.cache
+C:\Users\rgrit\Desktop\KPI\OP\C++ Labs\Laba_7\x64\Debug\Laba_7.exe
